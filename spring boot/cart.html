@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Cart</title>
+</head>
+
+<body>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #222;
+      color: white;
+      padding: 10px;
+      box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
+      height: 60px;
+    }
+
+    .navbar .logo a {
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    .navbar .menu ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .navbar .menu ul li {
+      margin-left: 15px;
+    }
+
+    .navbar .menu ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .navbar .menu ul li a:hover {
+      background-color: white;
+      color: black;
+      border-radius: 5px;
+      padding: 5px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+      }
+
+      .navbar .menu ul {
+        flex-direction: column;
+      }
+
+      .navbar .menu ul li {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+
+    /* card view */
+
+        #b1 {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card {
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-details {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .remove-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            width: 100%;
+            
+        }
+
+        .remove-button:hover {
+            background-color: black;
+        }
+
+        /* aligner */
+        .aligner {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card-container {
+            flex: 0 0 calc(33.33% - 10px);
+            /* Adjust the width based on your needs */
+            margin: 5px;
+        }
+
+  </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="#"><i>DELIVERO</i></a>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">More</a></li>
+        </ul>
+      </div>
+    </nav>
+    <br>
+    <br>
+
+    <!-- Card view -->
+    <!-- <div class="card">
+      <img src="img/b1.png" alt="Card Image">
+      <div class="card-details">
+        <h2 class="card-title">Card Title</h2>
+        <p class="card-description">Card Description</p>
+        <button class="remove-button">Remove</button>
+      </div>
+    </div> -->
+
+    <div id="container"></div>
+    <a href="payment.html"><button id="b1">Pay Now</button></a>
+    
+    
+
+    <script>
+
+//fatching and storing images from db
+//geting array of images from db
+var images = [
+  "img/b1.jpg",
+  "img/b2.jpg",
+  "img/b3.jpg",
+  "img/b4.jpg",
+  "img/b5.jpg",
+  "img/b6.jpg",
+];
+
+var cardTitle = ["burger-1","burger-2","burger-3","burger-4","burger-5","burger-6"];
+var cardDes = ["burger-1 Descriptions","burger-2 Descriptions","burger-3 Descriptions","burger-4 Descriptions","burger-5 Descriptions","burger-6 Descriptions"];
+
+//creatingobject
+addCard();
+
+
+//creating functions
+function addCard() {
+  var container = document.getElementById("container");
+
+  for (var i = 0; i < images.length; i++) {
+    // Create the card container
+    var card = document.createElement("div");
+    card.classList.add("card");
+
+    // Create the card image element
+    var img = document.createElement("img");
+    img.src = images[i];
+    img.alt = "Card Image";
+    card.appendChild(img);
+
+    // Create the card details container
+    var cardDetails = document.createElement("div");
+    cardDetails.classList.add("card-details");
+
+    // Create the card title element
+    var titleElement = document.createElement("h2");
+    titleElement.classList.add("card-title");
+    titleElement.textContent = cardTitle[i];
+    cardDetails.appendChild(titleElement);
+
+    // Create the card description element
+    var descriptionElement = document.createElement("p");
+    descriptionElement.classList.add("card-description");
+    descriptionElement.textContent = cardDes[i];
+    cardDetails.appendChild(descriptionElement);
+
+    // Create the remove button
+    var removeButton = document.createElement("button");
+    removeButton.classList.add("remove-button");
+    removeButton.textContent = "Remove";
+    cardDetails.appendChild(removeButton);
+
+    // Add the card details to the card container
+    card.appendChild(cardDetails);
+
+    // Add the card to the container
+    container.appendChild(card);
+
+    // Set margin between cards
+    card.style.margin = "10px";
+
+    // Check if a new line is needed
+    var cards = container.querySelectorAll(".card");
+    if (cards.length % 3 === 0) {
+      // Create a line break element
+      var lineBreak = document.createElement("div");
+      lineBreak.classList.add("line-break");
+      container.appendChild(lineBreak);
+    }
+  }
+}
+
+// Get the container and set the display and flex-direction properties
+var container = document.getElementById("container");
+container.style.display = "flex";
+container.style.flexWrap = "wrap";
+container.style.justifyContent = "flex-start";
+
+// // Add event listener to the button
+// var addButton = document.getElementById("b1");
+// addButton.addEventListener("click", addCard);
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"></script>
+  </body>
+
+</html>

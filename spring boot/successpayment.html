@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #ffffff;
+    }
+    
+    .confirmation {
+      text-align: center;
+    }
+    
+    .confirmation img {
+      max-width: 200px;
+      height: auto;
+    }
+    
+    .confirmation p {
+      font-size: 24px;
+      color: #333;
+      margin-top: 20px;
+    }
+
+
+    @keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in-text {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+  </style>
+</head>
+<body>
+  <div class="confirmation">
+    <img src="img/verified.gif" alt="Payment Successful">
+    <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold;" class="fade-in-text">Payment Successful</p>
+  </div>
+</body>
+</html>
