@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style1.css">
+
+</head>
+<body>
+</section>
+    <div class="container1 flex">
+        <div class="left">
+            <div class="main-img">
+            <img src="" class="slide">
+            </div>
+        </div>
+    
+
+    <div class="right">
+        <h3 class="prodName"></h3>
+        <h4 class="prodPrice"></h4>
+        <p class="prodDesc"></p>
+        
+        <h5>quantity</h5>
+        <div class="add flex1">
+          <span onclick="decreaseQuantity()">-</span>
+          <label id="quantityLabel">1</label>
+          <span onclick="increaseQuantity()">+</span>
+      </div>
+        <button onclick="addToCart()" id="b1">Add to Bag</button>
+    </div>
+    </div>
+</section>
+
+<script>   
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+      const productName = decodeURIComponent(urlParams.get('name'));
+      const productDescription = decodeURIComponent(urlParams.get('desc'));
+      const productImgUrl = decodeURIComponent(urlParams.get('imgUrl'));
+      const productPrice = urlParams.get('price');
+
+
+      let quantity = 1;
+
+    document.querySelector('.prodName').textContent = productName;
+    document.querySelector('.prodDesc').textContent = productDescription;
+    document.querySelector('.slide').src = productImgUrl;
+    document.querySelector('.prodPrice').innerHTML = `<small>Rs.</small> ${productPrice}`;
+
+    function decreaseQuantity(){
+      
+      if (quantity > 1) {
+        quantity--;
+        document.getElementById('quantityLabel').textContent = quantity;
+      }
+    }
+
+    function increaseQuantity() {
+      quantity++;
+      document.getElementById('quantityLabel').textContent = quantity;
+    }
+
+
+
+    function addToCart() {
+          const selectedProduct = JSON.parse(localStorage.getItem('selectedItem'));
+      
+          // Check if a product is selected
+          if (selectedProduct) {
+
+            // Store the cartProduct in localStorage
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+
+            // Add the selected product to the cart
+            const cartProduct = {
+              id: selectedProduct.id,
+              name: selectedProduct.name,
+              price: selectedProduct.price,
+              imgUrl: selectedProduct.imgUrl,
+              quantity: quantity
+            };
+            
+            
+            // Add the cartProduct to the cartItems array
+            cartItems.push(cartProduct);
+
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+            // Redirect to the cart page
+            window.location.href = 'cart.html'; 
+
+            
+          } else {
+            // No product is selected, handle this scenario (e.g., display an error message)
+            console.log('No product is selected.');
+          }
+        }
+    
+
+
+
+    //  const addBtn = document.getElementById('add');
+
+    // addBtn.addEventListener('click',openProductItem);
+
+</script>
+
+
+<!-- Add this code to the <script> section of the productDetails.html page -->
+
+      
+</body>
+</html> 
+

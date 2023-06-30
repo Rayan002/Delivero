@@ -88,6 +88,17 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        #b2 {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
         .card {
             width: 300px;
@@ -177,27 +188,116 @@
         <button class="remove-button">Remove</button>
       </div>
     </div> -->
-
     <div id="container"></div>
-    <a href="payment.html"><button id="b1">Pay Now</button></a>
+    <a href="payment.html"><button id="b1">Pay Now</button></a> 
     
-    
+    <!-- ... your existing code ... -->
+  
 
     <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+  
+        if (cartItems && cartItems.length > 0) {
+          var container = document.getElementById("container");
+          container.style.display = "flex";
+          container.style.flexWrap = "wrap";
+          container.style.justifyContent = "flex-start";
+  
+          cartItems.forEach(function (cartProduct) {
+            var card = document.createElement("div");
+            card.classList.add("card");
+  
+            var img = document.createElement("img");
+            img.src = cartProduct.imgUrl;
+            img.alt = "Card Image";
+            card.appendChild(img);
+  
+            var cardDetails = document.createElement("div");
+            cardDetails.classList.add("card-details");
+  
+            var titleElement = document.createElement("h2");
+            titleElement.classList.add("card-title");
+            titleElement.textContent = cartProduct.name;
+            cardDetails.appendChild(titleElement);
+  
+            var descriptionElement = document.createElement("p");
+            descriptionElement.classList.add("card-description");
+            descriptionElement.textContent = `Price: Rs. ${cartProduct.price}`;
+            cardDetails.appendChild(descriptionElement);
+  
+            var quantityContainer = document.createElement("div");
+            quantityContainer.classList.add("add", "flex1");
+            quantityContainer.style.display = "flex";
+            quantityContainer.style.alignItems = "center";
+            quantityContainer.style.marginTop = "10px";
+  
+            var decreaseButton = document.createElement("span");
+            decreaseButton.textContent = "-";
+            decreaseButton.style.marginRight = "10px";
+            decreaseButton.style.padding = "5px";
+            decreaseButton.style.cursor = "pointer";
+            decreaseButton.addEventListener("click", decreaseQuantity);
+  
+            var quantityLabel = document.createElement("label");
+            quantityLabel.id = "quantityLabel";
+            quantityLabel.textContent = cartProduct.quantity;
+  
+            var increaseButton = document.createElement("span");
+            increaseButton.textContent = "+";
+            increaseButton.style.marginLeft = "10px";
+            increaseButton.style.padding = "5px";
+            increaseButton.style.cursor = "pointer";
+            increaseButton.addEventListener("click", increaseQuantity);
+  
+            quantityContainer.appendChild(decreaseButton);
+            quantityContainer.appendChild(quantityLabel);
+            quantityContainer.appendChild(increaseButton);
+            cardDetails.appendChild(quantityContainer);
+  
+            var removeButton = document.createElement("button");
+            removeButton.classList.add("remove-button");
+            removeButton.textContent = "Remove";
+            cardDetails.appendChild(removeButton);
+  
+            removeButton.addEventListener("click", () => {
+              container.removeChild(card);
+            });
+  
+            card.appendChild(cardDetails);
+            container.appendChild(card);
+            card.style.margin = "10px";
+          });
+        } else {
+          console.log("No products are available in the cart.");
+        }
+      });
+  
+      let quantity = 1;
+  
+      function decreaseQuantity() {
+        if (quantity > 1) {
+          quantity--;
+          document.getElementById("quantityLabel").textContent = quantity;
+        }
+      }
+  
+      function increaseQuantity() {
+        quantity++;
+        document.getElementById("quantityLabel").textContent = quantity;
+      }
 
-//fatching and storing images from db
-//geting array of images from db
-var images = [
-  "img/b1.jpg",
-  "img/b2.jpg",
-  "img/b3.jpg",
-  "img/b4.jpg",
-  "img/b5.jpg",
-  "img/b6.jpg",
-];
+      function clearCart() {
+      localStorage.removeItem('cartItems');
+      var container = document.getElementById("container");
+      container.innerHTML = "";
+    }
+    </script>
+  
+  <button onclick="clearCart()" id="b2">Clear Cart</button>    
 
-var cardTitle = ["burger-1","burger-2","burger-3","burger-4","burger-5","burger-6"];
-var cardDes = ["burger-1 Descriptions","burger-2 Descriptions","burger-3 Descriptions","burger-4 Descriptions","burger-5 Descriptions","burger-6 Descriptions"];
+    <!-- <script>
+
 
 //creatingobject
 addCard();
@@ -207,7 +307,6 @@ addCard();
 function addCard() {
   var container = document.getElementById("container");
 
-  for (var i = 0; i < images.length; i++) {
     // Create the card container
     var card = document.createElement("div");
     card.classList.add("card");
@@ -258,7 +357,6 @@ function addCard() {
       container.appendChild(lineBreak);
     }
   }
-}
 
 // Get the container and set the display and flex-direction properties
 var container = document.getElementById("container");
@@ -269,7 +367,7 @@ container.style.justifyContent = "flex-start";
 // // Add event listener to the button
 // var addButton = document.getElementById("b1");
 // addButton.addEventListener("click", addCard);
-    </script>
+    </script> -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

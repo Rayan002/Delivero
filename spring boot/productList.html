@@ -1,0 +1,75 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/style1.css">
+   <title>Product Listing</title>
+ </head>
+ <body>
+
+
+  
+
+   <div class="container2">
+     <div class="product-list">
+
+     </div>
+   </div>
+   
+
+   <script>
+     const products = JSON.parse(localStorage.getItem('products'));
+ 
+     function populateProductList(products) {
+       const productList = document.querySelector('.product-list');
+ 
+       // Clear any existing product items
+       productList.innerHTML = '';
+ 
+       products.forEach(product => {
+         const productItem = document.createElement('div');
+         productItem.classList.add('product-item');
+         productItem.setAttribute('data-product-id', product.id);
+ 
+         const productImage = document.createElement('div');
+         productImage.classList.add('product-image');
+         const image = document.createElement('img');
+         image.src = product.imgUrl;
+         image.alt = product.name;
+         productImage.appendChild(image);
+ 
+         const productDetails = document.createElement('div');
+         productDetails.classList.add('product-details');
+         const productName = document.createElement('h3');
+         productName.textContent = product.name;
+         const productPrice = document.createElement('p');
+         productPrice.classList.add('cost');
+         productPrice.innerHTML = `<small>Rs.</small> ${product.price}`;
+ 
+         productDetails.appendChild(productName);
+         productDetails.appendChild(productPrice);
+ 
+         productItem.appendChild(productImage);
+         productItem.appendChild(productDetails);
+ 
+         productItem.addEventListener('click', () => {
+           openProductDetails(product);
+         });
+ 
+         productList.appendChild(productItem);
+       });
+     }
+ 
+     function openProductDetails(product) {
+       const queryString = `id=${product.id}&name=${encodeURIComponent(product.name)}&desc=${encodeURIComponent(product.description)}&imgUrl=${encodeURIComponent(product.imgUrl)}&price=${product.price}`;
+       window.location.href = `productDetails.html?${queryString}`;
+
+       localStorage.setItem('selectedItem',JSON.stringify(product));
+     }
+ 
+     populateProductList(products);
+   </script>
+ </body>
+ </html>
+ 

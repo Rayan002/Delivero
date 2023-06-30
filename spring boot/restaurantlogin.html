@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Delivero - admin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <script  src="https://kit.fontawesome.com/1c2704785a.js" crossorigin="anonymous"></script>
+
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            
+            box-sizing: border-box;
+        }
+        
+        .container{
+            width: 100%;
+            height: 100vh;
+            
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+        
+        .form-box {
+    width: 100%;
+    max-width: 450px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background: #fff;
+    padding: 50px 60px 70px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+        
+        .form-box h1{
+            font-size: 30px;
+            margin-bottom: 60px;
+            color:hsla(38, 88%, 56%, 0.692);
+            position: relative;
+        }
+        .form-box h1::after{
+            content: '';
+            width: 30px;
+            height:4px;
+            border-radius: 3px;
+            background: hsla(38, 88%, 56%, 0.692);
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translate(-50%);
+        
+        }
+        
+        .input-field {
+    background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    max-height: 55px;
+    transition: max-height 0.5s;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+        
+input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
+    font-size: 16px;
+    color: #555;
+}
+        
+        .input-field i{
+            margin-left: 15px;
+            color: #999;
+        }
+        
+        form p{
+            text-align: left;
+            font-size: 13px;
+        }
+        form p a{
+            text-decoration: none;
+            color: #a0180055;
+        }
+        
+        .button-field {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+        
+        .button-field button{
+            flex-basis: 48%;
+            background: rgb(230, 112, 9);
+            color: #fff;
+            height: 40px;
+            border-radius: 20px;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+            transition: background 1s ;
+        }
+        
+        .input-group{
+            height: 250px;
+        }
+        
+        .button-field button.disable{
+            background: #eaeaea;
+            color: #555;
+        
+        }
+        
+
+
+
+        </style>
+    
+</head>
+
+<body>
+    
+    <div class="container bg-white p-0">
+        
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Delivero</h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav ms-auto py-0 pe-4">
+                        <li class="nav-item">
+                            <a href="home.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="service.html" class="nav-link">Service</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+    
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="container my-5 py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="form-box">
+                        <h1 id="title">RESTAURANT</h1>
+                        
+                        <form name="login-form" action = "restaurantlogin.php" onsubmit = "return validation()" method = "POST">
+                            <div class="input-group">
+                                <div class="input-field">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input type="username" name="username" placeholder="Username">
+                                </div>
+                                <div class="input-field">
+                                    <i class="fa-solid fa-lock"></i>
+                                    <input type="password" name="password" placeholder="Password">
+                                </div>
+                                <p>
+                                    Forgot password? <a style="color:blue;" href="#">Click here!</a>
+                                </p>
+                            </div><br>
+                            <div class="button-field">
+                                <button type =  "submit" id = "btn" >Login</button>
+                            </div>
+                        </form>
+                       
+
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                    <!-- Content for the right side of the login page -->
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+    <!-- Remaining code for footer and JavaScript libraries -->
+    <script>
+        function validation() {
+            var username = document.forms["login-form"]["username"].value;
+            var password = document.forms["login-form"]["password"].value;
+    
+            if (username === "" || password === "") {
+                alert("Please fill in all fields.");
+                return false;
+            }
+        }
+    </script>
+    
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="lib/wow/wow.min.js"></script>
+     <script src="lib/easing/easing.min.js"></script>
+     <script src="lib/waypoints/waypoints.min.js"></script>
+     <script src="lib/counterup/counterup.min.js"></script>
+     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+     <script src="lib/tempusdominus/js/moment.min.js"></script>
+     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+ 
+     <!-- Template Javascript -->
+     <script src="js/main.js"></script>
+</body>
+
+</html>
